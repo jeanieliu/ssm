@@ -20,6 +20,25 @@
           select uid,uname,upwd,telephone,address,ulevel
           from t_user
       </select>
+ <!--
+     查询一条记录
+     传参： 1）接口@Param（“uid”）
+            2）xml：属性parameterType：Integer :int
+                    #{uid} 占位符
+ -->
+    <select id="selectById" parameterType="int" resultType="com.neuedu.entity.User">
+        select uid,uname,upwd,telephone,address,ulevel
+          from t_user
+          where uid=#{uid}
+    </select>
+
+    <!--插入-->
+    <insert id="insertUser">
+
+        insert into t_user (uname,upwd,telephone,address,ulevel)
+        values(#{user.uname},#{user.upwd},#{user.telephone},#{user.address},#{user.ulevel})
+
+    </insert>
 
 
 </mapper>
