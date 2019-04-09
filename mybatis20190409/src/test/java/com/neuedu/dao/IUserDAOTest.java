@@ -26,37 +26,36 @@ public class IUserDAOTest {
         sqlSessionFactory=new SqlSessionFactoryBuilder().build(inputStream);
     }
 
-    /*非接口的使用*/
+ /*   *//*非接口的使用*//*
     @Test
     public void selectAllxml() throws IOException {
-     /*4:生成sqlSession对象*/
+     *//*4:生成sqlSession对象*//*
         SqlSession session=sqlSessionFactory.openSession();
 
 
-        /*6:使用*/
-       /* List<User> list=session.selectList("selectAll");*/
+        *//*6:使用*//*
+       *//* List<User> list=session.selectList("selectAll");*//*
 
-       /* System.out.println(list);*/
+       *//* System.out.println(list);*//*
        User user=session.selectOne("selectById",2);
         System.out.println(user);
-        /*7:关闭*/
-        session.close();
-    }
-   /* @Test
-    public void selectAll() throws IOException {
-
-        *//*4:生成sqlSession对象*//*
-        SqlSession session=sqlSessionFactory.openSession();
-
-        *//*5：生成接口对象*//*
-        IUserDAO userDAO=session.getMapper(IUserDAO.class);
-        *//*6:使用*//*
-        List<User> list=userDAO.selectAll();
-        System.out.println(list);
         *//*7:关闭*//*
         session.close();
+    }*/
+    @Test
+    public void selectAll() throws IOException {
+
+        //4:生成sqlSession对象
+        SqlSession session=sqlSessionFactory.openSession();
+
+        //5：生成接口对象
+        IUserDAO userDAO=session.getMapper(IUserDAO.class);
+       // 6:使用
+        List<User> list=userDAO.selectAll();
+        System.out.println(list);
+        //7:关闭
+        session.close();
     }
-*/
    /* @Test
     public void selectById() {
         *//*4:生成sqlSession对象*//*

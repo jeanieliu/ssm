@@ -16,8 +16,12 @@
                属性：id：设置时dao中方法名
                      resultType:设置返回的类型：元素类型
     -->
+
+    <sql id="useall">
+        uid,uname,upwd,telephone,address,ulevel
+    </sql>
       <select id="selectAll" resultType="User">
-          select uid,uname,upwd,telephone,address,ulevel
+          select <include refid="useall"/>
           from t_user
       </select>
  <!--
@@ -27,7 +31,7 @@
                     #{uid} 占位符
  -->
     <select id="selectById" parameterType="int" resultType="User">
-        select uid,uname,upwd,telephone,address,ulevel
+        select <include refid="useall"/>
           from t_user
           where uid=#{uid}
     </select>

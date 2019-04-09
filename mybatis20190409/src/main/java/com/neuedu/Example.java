@@ -32,5 +32,9 @@ public class Example {
     *   4） 映射
      *       mappers（映射器）
     *
+    *  4:mapper中的一些参数
+    *     sql
+    *     数据表中字段和类中属性不相同
+    *        1) select中的字段的别名与类中属性名相同
     * */
 }
