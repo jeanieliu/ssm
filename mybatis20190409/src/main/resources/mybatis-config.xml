@@ -3,19 +3,42 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+   <properties resource="db.properties"/>
+
+    <typeAliases>
+      <!--
+         一个类起一个别名
+      <typeAlias type="com.neuedu.entity.User" alias="user"/>-->
+        <!--
+          包中类其别名，自动使用类名作为别名
+          使用packege name中存放的就是包名
+        -->
+        <package name="com.neuedu.entity" />
+    </typeAliases>
+
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/><!--事务管理-->
             <dataSource type="POOLED"><!--配置数据库连接的：这是一个数据库连接池-->
-             <property name="driver" value="com.mysql.jdbc.Driver"/><!--属性名，不能进行随意写-->
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/dspt"/>
-                <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+             <property name="driver" value="${driver}"/><!--属性名，不能进行随意写-->
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+
+                <!--数据库连接池的信息的添加-->
+                <property name="poolMaximumActiveConnections" value="5"/>
+                <property name="poolMaximumIdleConnections" value="2"/>
             </dataSource>
         </environment>
     </environments>
     
     <mappers>
-        <mapper class="com.neuedu.dao.IUserDAO"/>
+       <!-- <mapper class="com.neuedu.dao.IUserDAO"/>
+        <mapper class="com.neuedu.dao.IUserDAO02"/>-->
+      <!--  <mapper resource="com\neuedu\dao\IUserDAO.xml"/>-->
+        <!--
+            dao接口的包作为name的value值，这样，在此包下的所有的接口，都能映射成功
+        -->
+        <package name="com.neuedu.dao"/>
     </mappers>
 </configuration>

@@ -16,7 +16,7 @@
                属性：id：设置时dao中方法名
                      resultType:设置返回的类型：元素类型
     -->
-      <select id="selectAll" resultType="com.neuedu.entity.User">
+      <select id="selectAll" resultType="User">
           select uid,uname,upwd,telephone,address,ulevel
           from t_user
       </select>
@@ -26,14 +26,14 @@
             2）xml：属性parameterType：Integer :int
                     #{uid} 占位符
  -->
-    <select id="selectById" parameterType="int" resultType="com.neuedu.entity.User">
+    <select id="selectById" parameterType="int" resultType="User">
         select uid,uname,upwd,telephone,address,ulevel
           from t_user
           where uid=#{uid}
     </select>
 
     <!--插入-->
-    <insert id="insertUser">
+    <insert id="insertUser" >
 
         insert into t_user (uname,upwd,telephone,address,ulevel)
         values(#{user.uname},#{user.upwd},#{user.telephone},#{user.address},#{user.ulevel})
