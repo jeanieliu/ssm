@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--使用xml实现接口的功能
+    约束：mapper
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+   根：mapper
+      属性：namespace：映射的dao的全限定名：com.neuedu.dao.IUserDAO
+-->
+<mapper namespace="com.neuedu.dao.IUserDAO">
+    <!--查询所有
+
+      使用标签：select
+               属性：id：设置时dao中方法名
+                     resultType:设置返回的类型：元素类型
+    -->
+
+    <sql id="useall">
+        uid,uname,upwd,telephone,address,ulevel
+    </sql>
+      <select id="selectAll" resultType="User">
+          select <include refid="useall"/>
+          from t_user
+      </select>
+ <!--
+     查询一条记录
+     传参： 1）接口@Param（“uid”）
+            2）xml：属性parameterType：Integer :int
+                    #{uid} 占位符
+ -->
+    <select id="selectById" parameterType="int" resultType="User">
+        select <include refid="useall"/>
+          from t_user
+          where uid=#{uid}
+    </select>
+
+    <!--插入-->
+    <insert id="insertUser" >
+
+        insert into t_user (uname,upwd,telephone,address,ulevel)
+        values(#{user.uname},#{user.upwd},#{user.telephone},#{user.address},#{user.ulevel})
+
+    </insert>
+
+
+</mapper>
