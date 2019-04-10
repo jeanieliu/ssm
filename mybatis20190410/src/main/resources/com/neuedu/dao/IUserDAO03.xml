@@ -9,10 +9,30 @@
 <mapper namespace="com.neuedu.dao.IUserDAO03">
 
 
-    <sql id="useall">
+    <!--<sql id="useall">
         uid u_id,uname u_name,upwd u_pwd,telephone u_telephone,address u_address,ulevel u_level
+    </sql>-->
+    <sql id="useall">
+        uid ,uname ,upwd ,telephone,address ,ulevel
     </sql>
-      <select id="selectAll" resultType="User02">
+    <resultMap id="usermap" type="User02">
+        <!--字段或者属性是主键使用id进行匹配
+            其他的字段：result
+        -->
+        <!--
+           priperty：类中的属性名
+           column:数据表中的字段：
+        -->
+        <id property="u_id" column="uid"/>
+        <result property="u_name" column="uname" />
+        <result property="u_pwd" column="upwd"/>
+        <result property="u_telephone" column="telephone"/>
+        <result property="u_address" column="address"/>
+        <result property="u_level" column="ulevel"/>
+    </resultMap>
+
+    <!--调用的时候，使用resultMap进行调用，value：上面定义的ResultMap的id的值-->
+      <select id="selectAll" resultMap="usermap">
           select <include refid="useall"/>
           from t_user
       </select>
