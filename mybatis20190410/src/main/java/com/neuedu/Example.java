@@ -36,5 +36,12 @@ public class Example {
     *     sql
     *     数据表中字段和类中属性不相同
     *        1) select中的字段的别名与类中属性名相同
+    *        2) ResultMap
+    *        3)注解配置的两种
+    *
+    *   5：模糊查询
+    *      like
+    *   6: 高级查询：
+    *
     * */
 }

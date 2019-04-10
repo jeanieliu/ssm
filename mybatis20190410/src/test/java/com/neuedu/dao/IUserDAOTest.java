@@ -56,6 +56,22 @@ public class IUserDAOTest {
         //7:关闭
         session.close();
     }
+
+    @Test
+    public void selectByName() {
+
+        //4:生成sqlSession对象
+        SqlSession session=sqlSessionFactory.openSession();
+
+        //5：生成接口对象
+        IUserDAO userDAO=session.getMapper(IUserDAO.class);
+        // 6:使用
+        List<User> list=userDAO.selectByName("%a%");
+        System.out.println(list);
+        //7:关闭
+        session.close();
+
+    }
    /* @Test
     public void selectById() {
         *//*4:生成sqlSession对象*//*
