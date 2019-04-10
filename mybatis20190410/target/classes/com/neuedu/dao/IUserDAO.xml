@@ -54,7 +54,7 @@
         from t_user
         where uname like "${name}"
     </select>
-<!-- /* where uname like concat("%",#{name},"%")*/-->
+<!-- /* where uname like concat("%",#{name},"%")    ===== where uname like "%${name}%"*/-->
 
 
 </mapper>
