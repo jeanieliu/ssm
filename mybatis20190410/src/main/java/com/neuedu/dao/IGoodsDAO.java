@@ -21,7 +21,29 @@ public interface IGoodsDAO {
      *
      * */
 
+/*
+*
+*   进行商品修改的时候，只对部分字段进行修改，
+*    可能 商品名，可能 内容描述 ，图片等等
+*
+*    where gid=
+* */
+
+     Integer updateGoods(@Param("goods") Goods goods);
 
 
 
+     /*
+     *  查询类别是1，或者是1,2 或者1，2，3的
+     *    类别的个数不定，使用集合传值
+     * */
+
+     List<Goods> selectByCidList(List<Integer> ids);
+
+     /*
+     * 分页：
+     * 最少传值两个  offset num
+     * */
+
+     List<Goods> selectByOffsetAndNum(@Param("offset") int offset,@Param("num") int num);
 }

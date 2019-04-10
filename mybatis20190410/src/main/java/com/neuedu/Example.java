@@ -45,7 +45,16 @@ public class Example {
     *       商品名的模糊查询
     *       有价格的最大值和最小值之间
     *       类型id
-    *   
+    *    <where>
+    *     <if test="minprice!=null">
+    *       and   gprice >=#{minprice}
+    *      </if>
+    *      <if test="maxprice!=null">
+    *        and  gprice<=#{maxprice}
+    *       </if>
+    *     </where>
+    *
+    *     7:分页
     *
     * */
 }

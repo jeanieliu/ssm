@@ -56,4 +56,74 @@
         </trim>
     </select>
 
+    <!--
+     修改
+     set标签：如果修改的字段的最后一个有，的时候，自动删除
+    -->
+
+    <!--<update id="updateGoods">
+        UPDATE  t_good
+       <set>
+            <if  test="goods.gname!=null">
+                gname=#{goods.gname},
+            </if>
+            <if test="goods.gdesc!=null">
+                gdesc=#{goods.gdesc}  ,
+            </if>
+            <if test="goods.gprice!=null">
+                gprice=#{goods.gprice},
+            </if>
+       </set>
+        where gid=#{goods.gid}
+    </update>-->
+    <!--
+
+    -->
+    <update id="updateGoods">
+        UPDATE  t_good
+        <trim prefix="set" suffixOverrides=",">
+            <if  test="goods.gname!=null">
+                gname=#{goods.gname},
+            </if>
+            <if test="goods.gdesc!=null">
+                gdesc=#{goods.gdesc}  ,
+            </if>
+            <if test="goods.gprice!=null">
+                gprice=#{goods.gprice},
+            </if>
+        </trim>
+        where gid=#{goods.gid}
+    </update>
+
+    <!--
+       根据类别查询
+
+       foreach:
+         collection="list" :元素是什么
+         item="i" ：变量：遍历集合中的每一个元素
+         open="("   ：开始（
+         close=")" ：结束）
+
+         separator="," ，两个数据之间使用，
+         如
+         (1,2,3)
+
+    -->
+
+    <select id="selectByCidList" resultType="Goods">
+        SELECT  <include refid="goodsall"/>
+        from t_good
+        where cid IN
+        <foreach collection="list" item="i" open="(" close=")" separator=",">
+            #{i}
+        </foreach>
+
+    </select>
+
+    <select id="selectByOffsetAndNum" resultType="Goods">
+        select <include refid="goodsall"/>
+        FROM  t_good
+        limit #{offset},#{num}
+    </select>
+
 </mapper>
