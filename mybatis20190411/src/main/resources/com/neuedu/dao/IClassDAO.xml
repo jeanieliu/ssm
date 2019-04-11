@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--使用xml实现接口的功能
+    约束：mapper
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.dao.IClassDAO">
+
+    <!--<select id="selectById" parameterType="int" resultMap="tclass">
+        select c.id id,
+                c.name name,
+                t.id tid,
+                t.name tname
+        from class c join teacher t
+              on c.teacherid=t.id
+         where c.id=#{cid}
+
+    </select>
+
+   <resultMap id="tclass" type="TClass">
+       <id property="id" column="id"/>
+       <result property="name" column="name"/>
+       <association property="teacher" javaType="Teacher">
+           <id property="id" column="tid"/>
+           <result property="name" column="tname"/>
+       </association>
+   </resultMap>-->
+
+    <select id="selectById" parameterType="int" resultMap="tclass">
+        select c.id id,
+        c.name name,
+        t.id tid,
+        t.name tname,
+        s.id sid,
+        s.name sname
+        from class c join teacher t
+        on c.teacherid=t.id
+            join student s
+            on s.classid=c.id
+        where c.id=#{cid}
+
+    </select>
+
+    <resultMap id="tclass" type="TClass">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <association property="teacher" javaType="Teacher">
+            <id property="id" column="tid"/>
+            <result property="name" column="tname"/>
+        </association>
+        <collection property="lists" ofType="Student">
+            <id property="id" column="sid"/>
+            <result property="name" column="sname"/>
+        </collection>
+    </resultMap>
+</mapper>
