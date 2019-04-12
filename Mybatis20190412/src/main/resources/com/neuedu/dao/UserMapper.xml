@@ -105,4 +105,10 @@
       ulevel = #{ulevel,jdbcType=TINYINT}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAll" resultType="User">
+    SELECT  <include refid="Base_Column_List"/>
+    from t_user
+  </select>
+
 </mapper>

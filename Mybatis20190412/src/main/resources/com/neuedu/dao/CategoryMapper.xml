@@ -57,4 +57,11 @@
     set cname = #{cname,jdbcType=VARCHAR}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
+  <update id="updateByPrimaryKeyBB" parameterType="com.neuedu.entity.Category">
+    update t_category
+    set cname = #{cname,jdbcType=VARCHAR}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+
+
 </mapper>
