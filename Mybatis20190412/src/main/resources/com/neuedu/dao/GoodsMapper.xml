@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.neuedu.entity.Goods">
+    <constructor>
+      <idArg column="gid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gnum" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="gname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="gprice" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="gstock" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gsell" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gdesc" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="imgsrc" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    gid, gnum, gname, gprice, gstock, gsell, gdesc, cid, imgsrc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_good
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_good
+    where gid = #{gid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.neuedu.entity.Goods">
+    insert into t_good (gid, gnum, gname, 
+      gprice, gstock, gsell, 
+      gdesc, cid, imgsrc)
+    values (#{gid,jdbcType=INTEGER}, #{gnum,jdbcType=VARCHAR}, #{gname,jdbcType=VARCHAR}, 
+      #{gprice,jdbcType=DECIMAL}, #{gstock,jdbcType=INTEGER}, #{gsell,jdbcType=INTEGER}, 
+      #{gdesc,jdbcType=VARCHAR}, #{cid,jdbcType=INTEGER}, #{imgsrc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.neuedu.entity.Goods">
+    insert into t_good
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="gnum != null">
+        gnum,
+      </if>
+      <if test="gname != null">
+        gname,
+      </if>
+      <if test="gprice != null">
+        gprice,
+      </if>
+      <if test="gstock != null">
+        gstock,
+      </if>
+      <if test="gsell != null">
+        gsell,
+      </if>
+      <if test="gdesc != null">
+        gdesc,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="imgsrc != null">
+        imgsrc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="gnum != null">
+        #{gnum,jdbcType=VARCHAR},
+      </if>
+      <if test="gname != null">
+        #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="gprice != null">
+        #{gprice,jdbcType=DECIMAL},
+      </if>
+      <if test="gstock != null">
+        #{gstock,jdbcType=INTEGER},
+      </if>
+      <if test="gsell != null">
+        #{gsell,jdbcType=INTEGER},
+      </if>
+      <if test="gdesc != null">
+        #{gdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="imgsrc != null">
+        #{imgsrc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.neuedu.entity.Goods">
+    update t_good
+    <set>
+      <if test="gnum != null">
+        gnum = #{gnum,jdbcType=VARCHAR},
+      </if>
+      <if test="gname != null">
+        gname = #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="gprice != null">
+        gprice = #{gprice,jdbcType=DECIMAL},
+      </if>
+      <if test="gstock != null">
+        gstock = #{gstock,jdbcType=INTEGER},
+      </if>
+      <if test="gsell != null">
+        gsell = #{gsell,jdbcType=INTEGER},
+      </if>
+      <if test="gdesc != null">
+        gdesc = #{gdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="imgsrc != null">
+        imgsrc = #{imgsrc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.neuedu.entity.Goods">
+    update t_good
+    set gnum = #{gnum,jdbcType=VARCHAR},
+      gname = #{gname,jdbcType=VARCHAR},
+      gprice = #{gprice,jdbcType=DECIMAL},
+      gstock = #{gstock,jdbcType=INTEGER},
+      gsell = #{gsell,jdbcType=INTEGER},
+      gdesc = #{gdesc,jdbcType=VARCHAR},
+      cid = #{cid,jdbcType=INTEGER},
+      imgsrc = #{imgsrc,jdbcType=VARCHAR}
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+</mapper>
