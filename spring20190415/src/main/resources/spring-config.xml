@@ -6,6 +6,56 @@
       http://www.springframework.org/schema/beans
       http://www.springframework.org/schema/beans/spring-beans.xsd">
 <!--对User类创建Bean-->
-    <bean id="user" class="com.neuedu.entity.User"/>
+   <!-- <bean id="user" class="com.neuedu.entity.User">
 
+     </bean>-->
+
+
+    <!--
+      无参的构造器：
+      使用set进行赋值：
+       使用property，其中name中字段名，value中实际值
+        <property name="uid" value="1"/>
+        ===》
+         public void setUid(Integer uid) {
+        this.uid = uid;
+        }
+    -->
+  <!--  <bean id="user" class="com.neuedu.entity.User">
+        <property name="uid" value="1"/>
+        <property name="uname" value="tom"/>
+        <property name="upwd" value="123456"/>
+    </bean>-->
+
+<!--
+   有参构造器创建对象
+   1)  使用constructor-arg进行设置
+       两个参数： index：字段的下标（0开始）
+                  value:实际值
+       <constructor-arg index="0" value="1"/>
+    2）使用constructor-arg进行设置
+        两个参数： name：字段名
+                  value:实际值
+
+   2）使用constructor-arg进行设置
+        两个参数： type：字段的数据类型
+                  value:实际值
+-->
+   <!-- <bean id="user" class="com.neuedu.entity.User">
+      <constructor-arg index="0" value="1"/>
+        <constructor-arg index="1" value="tom"/>
+        <constructor-arg index="2" value="124578"/>
+    </bean>-->
+
+<!--    <bean id="user" class="com.neuedu.entity.User">
+        <constructor-arg name="uid" value="111"/>
+        <constructor-arg name="uname" value="tom01"/>
+        <constructor-arg name="upwd" value="124578"/>
+    </bean>-->
+
+    <bean id="user" class="com.neuedu.entity.User">
+        <constructor-arg type="java.lang.Integer" value="111"/>
+        <constructor-arg type="java.lang.String" value="tom01"/>
+        <constructor-arg type="java.lang.String" value="124578"/>
+    </bean>
 </beans>
