@@ -12,5 +12,14 @@ public class Example {
      *         set赋值
      *     2）使用有参的构造器
      *
+     * 3: 创建的属性，标签
+     *    1）别名 alias
+     *    2）*id name
+     *    3）*scope
+     *
+     *    4）class
+     *    5）autowire
+     *
+     *
      */
 }

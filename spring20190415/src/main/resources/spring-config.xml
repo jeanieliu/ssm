@@ -4,7 +4,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
       http://www.springframework.org/schema/beans
-      http://www.springframework.org/schema/beans/spring-beans.xsd">
+      http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
 <!--对User类创建Bean-->
    <!-- <bean id="user" class="com.neuedu.entity.User">
 
@@ -52,8 +52,40 @@
         <constructor-arg name="uname" value="tom01"/>
         <constructor-arg name="upwd" value="124578"/>
     </bean>-->
+    <!--别名的设置-->
+   <!-- <alias name="user" alias="vipuser"/>
+    <alias name="user" alias="bjuser"/>-->
 
-    <bean id="user" class="com.neuedu.entity.User">
+    <!--
+       标识符：
+      name：多个名字命名；在name属性中使用逗号、冒号或者空格将多个id分隔，
+      id：唯一标识,只能有一个，
+
+    -->
+  <!--  <bean id="user2 user3 user4" name="user2,user3,user4" class="com.neuedu.entity.User">
+        <constructor-arg type="java.lang.Integer" value="111"/>
+        <constructor-arg type="java.lang.String" value="tom01"/>
+        <constructor-arg type="java.lang.String" value="124578"/>
+    </bean>-->
+<!--
+   默认是单例模式
+    属性：scope：singleton  prototype
+    singleton
+ 在每个Spring IoC容器中一个bean定义对应一个对象实例。
+
+prototype
+ 一个bean定义对应多个对象实例。
+
+request
+ 在一次HTTP请求中，一个bean定义对应一个实例；即每次HTTP请求将会有各自的bean实例，它们依据某个bean定义创建而成。该作用域仅在基于web的Spring ApplicationContext情形下有效。
+session
+ 在一个HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。
+global session
+ 在一个全局的HTTP Session中，一个bean定义对应一个实例。典型情况下，仅在使用portlet context的时候有效。该作用域仅在基于web的Spring ApplicationContext情形下有效。
+
+
+-->
+    <bean id="user"  class="com.neuedu.entity.User" scope="prototype" autowire="byName">
         <constructor-arg type="java.lang.Integer" value="111"/>
         <constructor-arg type="java.lang.String" value="tom01"/>
         <constructor-arg type="java.lang.String" value="124578"/>
