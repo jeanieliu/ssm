@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--spring约束-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+      http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd" >
+
+    <!--
+      常量的注入
+    -->
+    <bean id="user"  class="com.neuedu.entity.User" scope="prototype" >
+        <constructor-arg type="java.lang.Integer" value="111"/>
+        <constructor-arg type="java.lang.String" value="tom01"/>
+        <constructor-arg type="java.lang.String" value="124578"/>
+    </bean>
+
+    <!--
+      bean注入
+        ref：bean的id值
+    -->
+    <bean id="userController" class="com.neuedu.entity.UserController">
+        <property name="user" ref="user"/>
+    </bean>
+
+    <!--各种复杂数据的注入-->
+<!--
+    DataType
+  -->
+
+     <bean id="dataType" class="com.neuedu.entity.DataType">
+         <!--数组注入-->
+         <property name="array">
+             <list>
+                 <value>天津</value>
+                 <value>北京</value>
+                 <value>太原</value>
+                 <value>石家庄</value>
+             </list>
+         </property>
+
+         <!--list注入-->
+         <property name="lists">
+             <list>
+                 <value>html</value>
+                 <value>css</value>
+                 <value>java</value>
+                 <value>mysql</value>
+             </list>
+         </property>
+
+         <!--map注入-->
+         <property name="map">
+            <map>
+                <entry key="name" value="张三"/>
+                <entry key="sex" value="男"/>
+                <entry key="address" value="上海"/>
+            </map>
+         </property>
+
+         <!--properties-->
+         <property name="properties">
+             <props>
+                 <prop key="driver">com.mysql.jdbc.Driver</prop>
+                 <prop key="url">jdbc:mysql://127.0.0.1:3306/dspt</prop>
+                 <prop key="username">root</prop>
+                 <prop key="password">123456</prop>
+             </props>
+         </property>
+<!--null注入-->
+         <property name="email">
+             <null/>
+        </property>
+     </bean>
+
+</beans>
