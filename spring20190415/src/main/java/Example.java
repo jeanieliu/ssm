@@ -41,5 +41,46 @@ public class Example {
      *            properties
      *          d: null
      *
+     *  5:注解实现
+     *   1）介绍注解
+     *      a：实现bean的功能
+     *      @Component：组件（作用在类上）
+            @Controller ：web层
+            @ Service：业务层
+            @ Repository：持久层
+           b:@Scope --- bean作用域
+           c:@Autowired
+             @Resource
+           d:声明周期的注解
+             @PostConstruct
+             功能：为当前Bean 指定init-method 参数
+             格式：定义在成员方法的上方，兼容静态方法
+             @PreDestroy
+             功能：为当前Bean 指定destory-method 参数 格式：定义在成员方法的上方，兼容静态方法
+
+        2）实现注解
+           1）导入jar包
+           2）配置ApplicationContext文件
+             a:引入约束
+             b:配置
+          3) 创建两个类
+             使用注解
+          4）测试
+      3）案例
+          模拟jdbc：
+          a:有一个接口 JDBCDATA  方法：print();
+          b：子类：MysqlJDBC实现这个接口  print()输出：使用mysql实现jdbc
+              子类：OracleJDBC 实现这个接口  print()输出：使用oracle实现jdbc
+
+       6:spring和junit整合
+         1）导入jar包
+         2）配置测试类
+             @RunWith：SpringRunner.class  使用spring进行测试
+            @ContextConfiguration("classpath:spring-config03.xml")
+                ApplicatianContxt文件所在的路径及其文件。
+                从classes中进行查找，
+                classpath：就是从classes开始
+          3）测试
+
      */
 }
