@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--使用xml实现接口的功能
+    约束：mapper
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.dao.IGoodsDAO">
+
+    <sql id="goodsall">
+        gid,gnum,gname,gprice,gstock,gsell,gdesc,cid,imgsrc
+    </sql>
+
+    <!--<select id="selectByNameAndDesc" resultType="Goods">
+        SELECT <include refid="goodsall"/>
+        from t_good
+        where gname like "%${gname}%"
+        <if  test="gdesc!=null">
+            and gdesc like concat("%",#{gdesc},"%")
+        </if>
+
+    </select>-->
+
+    <!--
+      where:标签：当里面有满足条件的语句，则where存在，同时删除了第一个条件的前面的and |or
+    -->
+
+   <!-- <select id="selectByNameAndDesc" resultType="Goods">
+        SELECT <include refid="goodsall"/>
+        from t_good
+        <where>
+            <if  test="gname!=null">
+             or gname like "%${gname}%"
+            </if>
+
+            <if  test="gdesc!=null">
+                or gdesc like concat("%",#{gdesc},"%")
+            </if>
+        </where>
+    </select>-->
+
+    <!--
+      trim标签： 1：前缀是where 2:prefixOverrides:如果第一个满足条件的前面有and|or 覆盖掉
+    -->
+    <select id="selectByNameAndDesc" resultType="Goods">
+        SELECT <include refid="goodsall"/>
+        from t_good
+        <trim prefix="where" prefixOverrides="and|or">
+            <if  test="gname!=null">
+                or gname like "%${gname}%"
+            </if>
+
+            <if  test="gdesc!=null">
+                or gdesc like concat("%",#{gdesc},"%")
+            </if>
+        </trim>
+    </select>
+
+    <!--
+     修改
+     set标签：如果修改的字段的最后一个有，的时候，自动删除
+    -->
+
+    <!--<update id="updateGoods">
+        UPDATE  t_good
+       <set>
+            <if  test="goods.gname!=null">
+                gname=#{goods.gname},
+            </if>
+            <if test="goods.gdesc!=null">
+                gdesc=#{goods.gdesc}  ,
+            </if>
+            <if test="goods.gprice!=null">
+                gprice=#{goods.gprice},
+            </if>
+       </set>
+        where gid=#{goods.gid}
+    </update>-->
+    <!--
+
+    -->
+    <update id="updateGoods">
+        UPDATE  t_good
+        <trim prefix="set" suffixOverrides=",">
+            <if  test="goods.gname!=null">
+                gname=#{goods.gname},
+            </if>
+            <if test="goods.gdesc!=null">
+                gdesc=#{goods.gdesc}  ,
+            </if>
+            <if test="goods.gprice!=null">
+                gprice=#{goods.gprice},
+            </if>
+        </trim>
+        where gid=#{goods.gid}
+    </update>
+
+    <!--
+       根据类别查询
+
+       foreach:
+         collection="list" :元素是什么
+         item="i" ：变量：遍历集合中的每一个元素
+         open="("   ：开始（
+         close=")" ：结束）
+
+         separator="," ，两个数据之间使用，
+         如
+         (1,2,3)
+
+    -->
+
+    <select id="selectByCidList" resultType="Goods">
+        SELECT  <include refid="goodsall"/>
+        from t_good
+        where cid IN
+        <foreach collection="list" item="i" open="(" close=")" separator=",">
+            #{i}
+        </foreach>
+
+    </select>
+
+    <select id="selectByOffsetAndNum" resultType="Goods">
+        select <include refid="goodsall"/>
+        FROM  t_good
+        limit #{offset},#{num}
+    </select>
+
+</mapper>
