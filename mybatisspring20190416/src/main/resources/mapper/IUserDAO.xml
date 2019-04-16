@@ -25,7 +25,11 @@
           from t_user
       </select>
 
-
+    <select id="selectAllByUlevel" resultType="User">
+        select <include refid="useall"/>
+        from t_user
+        where ulevel=#{ulevel}
+    </select>
 
  <!--
      查询一条记录

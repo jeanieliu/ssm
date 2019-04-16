@@ -9,6 +9,7 @@ public interface IUserDAO {
 
     List<User> selectAll();
 
+    List<User> selectAllByUlevel( @Param("ulevel") Integer ulevel);
     User selectById(@Param("uid") Integer id);
 
     Integer insertUser(@Param("user") User user);
