@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+     ">
+<!--
+   1:实现两个类的bean
+-->
+    <bean  id="book" class="com.neuedu.pojo.Book"/>
+   <bean  id="insertBook" class="com.neuedu.aspect.InsertBook"/>
+
+    <!--
+      2:配置aop
+    -->
+    <aop:config>
+        <!--2.1配置切入点
+            id:切入点的标识符:自定义
+            expression：实际的切入点
+              a:execution(public * *(..)) 所有public修饰的返回值为任意，所有的有参无参方法
+              b:execution(* com.xyz.service.AccountService.*(..))
+              com.neuedu.pojo.Book这个Book类中的所有的方法（有参无参）
+        -->
+        <aop:pointcut id="mypointcut" expression="execution(* com.neuedu.pojo.Book.*(..))"/>
+        <!--
+          2.2 配置切面
+               ref:含有通知的类
+
+                 <aop:before method="create" pointcut-ref="mypointcut"/>
+                 前置通知的设置：
+                     method的前置通知的方法
+                     pointcut-ref：应用的切入点
+        -->
+        <aop:aspect ref="insertBook">
+            <aop:before method="create" pointcut-ref="mypointcut"/>
+            <aop:after method="destroy" pointcut-ref="mypointcut"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
