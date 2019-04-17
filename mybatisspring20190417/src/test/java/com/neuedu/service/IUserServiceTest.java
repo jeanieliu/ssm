@@ -1,5 +1,6 @@
 package com.neuedu.service;
 
+import com.github.pagehelper.PageInfo;
 import com.neuedu.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,11 @@ public class IUserServiceTest {
     private IUserService userService;
     @Test
     public void getVipAll() {
-        System.out.println(userService.getVipAll());
+
+        PageInfo<User> pageInfo=userService.getVipAll(2,4);
+        System.out.println(pageInfo);
+        System.out.println(pageInfo.getList().get(0));
+
     }
 
     @Test

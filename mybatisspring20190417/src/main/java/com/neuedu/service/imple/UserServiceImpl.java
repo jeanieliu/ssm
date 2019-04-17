@@ -1,5 +1,7 @@
 package com.neuedu.service.imple;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.neuedu.dao.IUserDAO;
 import com.neuedu.entity.User;
 import com.neuedu.service.IUserService;
@@ -17,8 +19,15 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private IUserDAO userDAO;
 
-    public List<User> getVipAll() {
-        return userDAO.selectAllByUlevel(1);
+    public PageInfo<User> getVipAll(int start,int num) {
+
+        PageHelper.startPage(start,num);
+        List<User> userList=userDAO.selectAllByUlevel(1);
+
+        PageInfo<User> userPageInfo=new PageInfo<User>(userList);
+       // userPageInfo.setList(userList);
+        return userPageInfo;
+
     }
 
     public List<User> getAdminAll() {
