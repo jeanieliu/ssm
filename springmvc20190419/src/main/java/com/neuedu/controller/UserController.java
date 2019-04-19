@@ -114,7 +114,7 @@ public class UserController {
      * @param modelMap
      * @return
      */
-    @GetMapping("login")
+   /* @GetMapping("login")
     public String login(User user,
                         ModelMap modelMap){
 
@@ -122,7 +122,7 @@ public class UserController {
       // modelMap.addAttribute("user",user);
          modelMap.put("user",user);
         return "result";
-    }
+    }*/
 
     @PostMapping("loginpost")
     public String loginpost(User user,
@@ -133,5 +133,31 @@ public class UserController {
         modelMap.put("user",user);
         return "result";
     }
+
+    /*
+    *
+    * 请求转发
+    * */
+    @GetMapping("login")
+    public String login(User user,
+                        ModelMap modelMap){
+
+        System.out.println(user);
+        // modelMap.addAttribute("user",user);
+        modelMap.put("user",user);
+        /*return "forward:result.do";*/
+        return "redirect:liststudent.do";
+    }
+
+    @GetMapping("result")
+    public String result(){
+        return "result";
+    }
+
+    @GetMapping("liststudent")
+    public String liststudent(){
+        return "liststudent";
+    }
+
 
 }

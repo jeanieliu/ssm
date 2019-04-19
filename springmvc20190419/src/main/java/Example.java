@@ -33,6 +33,11 @@ public class Example {
      *              ModelMap:import org.springframework.ui
      *
      *   3：中文乱码的解决
-     *
+     *   4:请求转发和重定向
+     *      1）请求转发
+     *         a: return "result"  --result.jsp(推荐使用)
+     *         b：forward：---*.do
+     *      2)重定向
+     *         redirect
      */
 }
