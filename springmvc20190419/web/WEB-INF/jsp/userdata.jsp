@@ -20,5 +20,12 @@
        年龄：<input type="text" name="age"/><br>
        <input type="submit" value="注册">
    </form>
+
+<form action="/user/loginpost.do" method="post">
+    用户id:<input type="text" name="uid"><br>
+    用户名：<input type="text"name="uname"/><br>
+    年龄：<input type="text" name="age"/><br>
+    <input type="submit" value="注册">
+</form>
 </body>
 </html>

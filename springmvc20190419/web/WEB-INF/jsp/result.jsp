@@ -11,6 +11,7 @@
     <title>结果处理</title>
 </head>
 <body>
-结果处理
+
+  ${user}
 </body>
 </html>
