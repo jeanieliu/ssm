@@ -1,0 +1,39 @@
+body{
+    margin: 0 auto;
+}
+.laycontent{
+    width: 100%;
+   /* height: 600px;*/
+  /* background-color: darkred;*/
+}
+
+.lay_top{
+    width: 100%;
+    height: 100px;
+    background-color: black;
+    color: white;
+}
+.lay_middle{
+    width: 100%;
+    height:600px ;
+   /* background-color: antiquewhite;
+    color: darkred;*/
+    display: flex;
+}
+.lay_left{
+    width: 20%;
+    height: 100%;
+   /* background-color: aqua;*/
+}
+.lay_right{
+    width: 80%;
+    height: 100%;
+  /*  background-color: yellowgreen;*/
+}
+
+.lay_foot{
+    width: 100%;
+    height: 50px;
+    background-color:darkgrey;
+    color:black;
+}

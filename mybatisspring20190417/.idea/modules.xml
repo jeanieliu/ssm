@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/mybatis-spring20190416.iml" filepath="$PROJECT_DIR$/mybatis-spring20190416.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatisspring20190417.iml" filepath="$PROJECT_DIR$/mybatisspring20190417.iml" />
+    </modules>
+  </component>
+</project>
