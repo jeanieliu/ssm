@@ -53,7 +53,14 @@ public class Example {
     *    2）页面设置
     *      1）添加按钮
     *      2）实现
+    *2:json
+    *   1)jar引入
+    *   2）商品添加时候中有类型
+    *      ajax调用
+    *       a:controller中的实现
+    *           Filter接口  实现 doFilter（）中写字符编码--request response
     *
+    *   3）用户名的唯一性
     *
     * */
 }

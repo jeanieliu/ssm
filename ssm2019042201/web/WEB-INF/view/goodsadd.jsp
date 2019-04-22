@@ -9,16 +9,16 @@
 <html>
 <head>
     <title>商品的添加</title>
-    <link rel="stylesheet" type="text/css" href="css/lay.css">
-    <script type="application/javascript" src="js/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/lay.css">
+    <script type="application/javascript" src="/js/jquery-3.3.1.js"></script>
 </head>
 <body>
 <div class="laycontent">
     <%--通过include指令，调用页面--%>
-   <%@include file="lay/top.jsp"%>
+   <%@include file="/lay/top.jsp"%>
         <%--<jsp:include page="lay/top.jsp"></jsp:include>--%>
     <div class="lay_middle">
-        <%@include file="lay/left.jsp"%>
+        <%@include file="/lay/left.jsp"%>
         <div class="lay_right">
             <form>
                 <table>
@@ -64,7 +64,7 @@
         </div>
 
     </div>
-    <%@include file="lay/foot.jsp"%>
+    <%@include file="/lay/foot.jsp"%>
 </div>
 
 <script>
@@ -107,10 +107,11 @@
   //同步实现
        var  str="";
        $.ajax({
-           url:"cateall.cate",
+           url:"/cate/list.do",
            async:false,
            dataType:"json",
            success:function(result){
+               console.log(result)
                $(result).each(function () {
                    str+="<option value="+this.cid+">"+this.cname+"</option>"
                })
