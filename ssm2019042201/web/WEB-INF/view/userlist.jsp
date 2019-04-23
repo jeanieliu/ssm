@@ -36,7 +36,7 @@
                         <td > ${user.uname} </td >
                         <td > ${user.telephone}</td >
                         <td >${user.address} </td >
-                       <td > <a href='delete.user?id=${user.uid}'>删除</a> &nbsp;&nbsp;&nbsp;<a href='find.user?id=${user.uid}'>修改</a></td >
+                       <td > <a href='/user/${user.uid}/delete.do'>删除</a> &nbsp;&nbsp;&nbsp;<a href='find.user?id=${user.uid}'>修改</a></td >
                     </tr >
 
 

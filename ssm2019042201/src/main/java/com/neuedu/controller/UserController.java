@@ -70,4 +70,15 @@ public class UserController {
 
         return jsonString;
     }
+
+
+
+    /*删除*/
+    @GetMapping("/{id}/delete")
+    public String deleteById(@PathVariable("id") Integer uid){
+        userService.delete(uid);
+        return "redirect:/user/list.do";
+    }
+
+
 }

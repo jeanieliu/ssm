@@ -48,4 +48,8 @@ public class UserServiceImpl implements IUserService {
     public List<User> getAll() {
         return userDAO.selectAll();
     }
+
+    public void delete(Integer uid) {
+        userDAO.deleteUser(uid);
+    }
 }
