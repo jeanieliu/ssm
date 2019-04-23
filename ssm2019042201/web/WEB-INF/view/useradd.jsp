@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>添加用户</title>
-    <script type="application/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="application/javascript" src="/js/jquery-3.3.1.js"></script>
 </head>
 <body>
 <div class="laycontent">
@@ -56,17 +56,7 @@
 
 <script>
 
-    /*
-    * 1:测试jquery调用是否成功
-    *  $(function () {
-        alert("测试")
-    })‘
 
-    $===>jquery
-    功能：javasript中的onload
-
-
-    */
 
     function checkName(name){
         //1:从页面中提取name的值
@@ -79,7 +69,7 @@
          */
 
         $.ajax({
-            url:"checkName.user",/*servlet的处理*/
+            url:"/user/checkName.do",/*servlet的处理*/
             data:{"uname":username},/*向服务器传入数据：数据格式json*/
             dataType:"json",/*接收返回的类型："xml": 返回 XML 文档，可用 jQuery 处理。
 "html": 返回纯文本 HTML 信息；包含的 script 标签会在插入 dom 时执行。
@@ -88,7 +78,7 @@
 "jsonp": JSONP 格式。使用 JSONP 形式调用函数时，如 "myurl?callback=?" jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。
 "text": 返回纯文本字符串*/
             async:true,/*默认true异步传输*/
-            type:"get",/*请求的类型：get(默认);post*/
+            type:"post",/*请求的类型：get(默认);post*/
             success:function (result) {/*通过回调函数处理返回的数据*/
                 //result={"flag":true}
                /* console.log(result);*/

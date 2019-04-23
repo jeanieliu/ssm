@@ -44,4 +44,8 @@ public class UserServiceImpl implements IUserService {
     public void add(User user) {
         userDAO.insertUser(user);
     }
+
+    public List<User> getAll() {
+        return userDAO.selectAll();
+    }
 }

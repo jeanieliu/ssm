@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -52,4 +49,25 @@ public class UserController {
         return "redirect:list.do";
     }
 
+    /*用户名的验证
+    *   返回类型：String  {"flag":true}
+    * */
+
+    @PostMapping("checkName")
+    @ResponseBody
+    public String checkName(String uname){
+       List<User> userList= userService.getAll();
+       boolean flag=true;/*可用*/
+       for(User user:userList){
+           if(uname.equals(user.getUname())){
+               flag=false;
+               break;
+           }
+       }
+
+       String jsonString="{\"flag\":"+flag+"}";
+        System.out.println(jsonString);
+
+        return jsonString;
+    }
 }

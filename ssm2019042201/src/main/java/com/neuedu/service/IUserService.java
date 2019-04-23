@@ -17,4 +17,6 @@ public interface IUserService {
 
     public void add(User user);
 
+    public List<User> getAll();
+
 }
