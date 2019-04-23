@@ -11,37 +11,8 @@
         gid,gnum,gname,gprice,gstock,gsell,gdesc,cid,imgsrc
     </sql>
 
-    <!--<select id="selectByNameAndDesc" resultType="Goods">
-        SELECT <include refid="goodsall"/>
-        from t_good
-        where gname like "%${gname}%"
-        <if  test="gdesc!=null">
-            and gdesc like concat("%",#{gdesc},"%")
-        </if>
 
-    </select>-->
 
-    <!--
-      where:标签：当里面有满足条件的语句，则where存在，同时删除了第一个条件的前面的and |or
-    -->
-
-   <!-- <select id="selectByNameAndDesc" resultType="Goods">
-        SELECT <include refid="goodsall"/>
-        from t_good
-        <where>
-            <if  test="gname!=null">
-             or gname like "%${gname}%"
-            </if>
-
-            <if  test="gdesc!=null">
-                or gdesc like concat("%",#{gdesc},"%")
-            </if>
-        </where>
-    </select>-->
-
-    <!--
-      trim标签： 1：前缀是where 2:prefixOverrides:如果第一个满足条件的前面有and|or 覆盖掉
-    -->
     <select id="selectByNameAndDesc" resultType="Goods">
         SELECT <include refid="goodsall"/>
         from t_good
@@ -56,29 +27,8 @@
         </trim>
     </select>
 
-    <!--
-     修改
-     set标签：如果修改的字段的最后一个有，的时候，自动删除
-    -->
 
-    <!--<update id="updateGoods">
-        UPDATE  t_good
-       <set>
-            <if  test="goods.gname!=null">
-                gname=#{goods.gname},
-            </if>
-            <if test="goods.gdesc!=null">
-                gdesc=#{goods.gdesc}  ,
-            </if>
-            <if test="goods.gprice!=null">
-                gprice=#{goods.gprice},
-            </if>
-       </set>
-        where gid=#{goods.gid}
-    </update>-->
-    <!--
 
-    -->
     <update id="updateGoods">
         UPDATE  t_good
         <trim prefix="set" suffixOverrides=",">
@@ -95,20 +45,8 @@
         where gid=#{goods.gid}
     </update>
 
-    <!--
-       根据类别查询
 
-       foreach:
-         collection="list" :元素是什么
-         item="i" ：变量：遍历集合中的每一个元素
-         open="("   ：开始（
-         close=")" ：结束）
 
-         separator="," ，两个数据之间使用，
-         如
-         (1,2,3)
-
-    -->
 
     <select id="selectByCidList" resultType="Goods">
         SELECT  <include refid="goodsall"/>
@@ -126,4 +64,8 @@
         limit #{offset},#{num}
     </select>
 
+    <insert id="insert">
+        insert into t_good(gnum,gname,gprice,gstock,gsell,gdesc,cid,imgsrc)
+        values(#{goods.gnum},#{goods.gname},#{goods.gprice},#{goods.gstock},#{goods.gsell},#{goods.gdesc},#{goods.cid},#{goods.imgsrc})
+    </insert>
 </mapper>

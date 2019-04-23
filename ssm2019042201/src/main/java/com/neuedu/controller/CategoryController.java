@@ -68,8 +68,5 @@ public class CategoryController {
 
     }
 
-    @GetMapping("goodsadd")
-    public String add(){
-        return "goodsadd";
-    }
+
 }

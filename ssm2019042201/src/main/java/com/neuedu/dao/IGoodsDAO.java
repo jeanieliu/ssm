@@ -46,4 +46,8 @@ public interface IGoodsDAO {
      * */
 
      List<Goods> selectByOffsetAndNum(@Param("offset") int offset, @Param("num") int num);
+
+    Integer insert(@Param("goods") Goods goods);
+
+
 }

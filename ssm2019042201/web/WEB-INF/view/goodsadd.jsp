@@ -20,7 +20,7 @@
     <div class="lay_middle">
         <%@include file="/lay/left.jsp"%>
         <div class="lay_right">
-            <form>
+            <form action="/goods/add.do" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
                     <td>商品编号</td>
@@ -52,6 +52,13 @@
                     </tr>
                     <tr>
                         <td colspan="2">
+                            <input type="file" name="file" onchange="fun(this)">
+                            <br>
+                            <img src="/imgload/img01.jpg" id="imgshow" style="width: 100px;height: 100px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
                             <input type="submit" value="添加"/>
                         </td>
 
@@ -66,6 +73,18 @@
     </div>
     <%@include file="/lay/foot.jsp"%>
 </div>
+<script>
+    function fun(element){
+        var file=element.files.item(0);//第一个文件
+        console.log(file)
+        var url=window.URL.createObjectURL(file);//创建url
+        document.getElementById("imgshow").src=url;
+    }
+
+    /*判断是否上传的图片*/
+</script>
+
+
 
 <script>
 
@@ -75,34 +94,6 @@
     })
 */
    $(function () {
-       //异步请求实现
-       /*$.ajax({
-           url:"cateall.cate",
-           async:true,
-           dataType:"json",
-           success:function(result){
-               /!*console.log(result);*!/
-               /!*
-               拼接：  <option value="1">玫瑰</option>
-                         <option value="2">百合</option>
-                         。。。。。。
-               * *!/
-            var  str="";
-
-            $(result).each(function () {
-                str+="<option value="+this.cid+">"+this.cname+"</option>"
-            })
-             console.log(str);
-
-            //放入到元素中
-           $("select[name='cid']").html(str);
-
-           },
-           error:function(){
-               console.log("程序有误");
-           }
-       })*/
-
 
   //同步实现
        var  str="";
