@@ -30,4 +30,12 @@
     <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="102400000"></property>
     </bean>
+
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean id="myHandle" class="com.neuedu.handle.MyHandle"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

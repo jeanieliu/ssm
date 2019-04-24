@@ -109,7 +109,7 @@ public class UserController {
             session.setAttribute("username",username);
             return "redirect:/user/list.do";
         }else{
-            return "redirect:/user/loinjsp.do";
+            return "redirect:/user/loginjsp.do";
         }
     }
 /*
@@ -129,7 +129,7 @@ public class UserController {
             return "redirect:/user/loinjsp.do";
         }
     }*/
-    @GetMapping("loinjsp")
+    @GetMapping("loginjsp")
     public String loginjsp(){
         return "login";
     }
