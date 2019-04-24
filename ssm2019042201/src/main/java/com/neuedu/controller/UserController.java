@@ -10,14 +10,20 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 @RequestMapping("user")
+@SessionAttributes("uname")
 public class UserController {
 
     @Autowired
     private IUserService userService;
+/*
+*//*    @Autowired
+    private HttpServletRequest request;*/
 /*
 *  分页的时候
 *    pageNum num可能没有传入值，使用默认值：@RequestParam(required = false,defaultValue = "1")
@@ -79,6 +85,59 @@ public class UserController {
         userService.delete(uid);
         return "redirect:/user/list.do";
     }
+/*
+* Session设置：
+*   1：使用HttpServletRequest对象完成
+* */
+  /*  @PostMapping("login")
+    public String login(String username,String password,String ifsave,HttpServletRequest request){
+        boolean flag=userService.checklogin(username,password);
+        if(flag){
 
+            HttpSession session=request.getSession();
+            session.setAttribute("username",username);
+            return "redirect:/user/list.do";
+        }else{
+            return "redirect:/user/loinjsp.do";
+        }
+    }*/
+
+    @PostMapping("login")
+    public String login(String username,String password,String ifsave,HttpSession session){
+        boolean flag=userService.checklogin(username,password);
+        if(flag){
+            session.setAttribute("username",username);
+            return "redirect:/user/list.do";
+        }else{
+            return "redirect:/user/loinjsp.do";
+        }
+    }
+/*
+*   2：使用SpringMVC提供
+* */
+   /* @PostMapping("login")
+    public String login(String username,
+                        String password,
+                        String ifsave,
+                        Model model){
+        boolean flag=userService.checklogin(username,password);
+        if(flag){
+
+           model.addAttribute("uname",username);
+            return "redirect:/user/list.do";
+        }else{
+            return "redirect:/user/loinjsp.do";
+        }
+    }*/
+    @GetMapping("loinjsp")
+    public String loginjsp(){
+        return "login";
+    }
+
+    @GetMapping("getSession")
+    public String getSessionValue(@ModelAttribute("uname")String name){
+        System.out.println(name);
+        return "redirect:/user/list.do";
+    }
 
 }

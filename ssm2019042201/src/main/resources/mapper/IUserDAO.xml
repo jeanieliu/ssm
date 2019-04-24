@@ -64,4 +64,12 @@
        delete from t_user
        where uid=#{uid}
    </delete>
+
+
+    <select id="selectByNamePassword" resultType="User">
+        select <include refid="useall"/>
+        from t_user
+        where uname=#{uname} and upwd=#{upwd}
+    </select>
+
 </mapper>

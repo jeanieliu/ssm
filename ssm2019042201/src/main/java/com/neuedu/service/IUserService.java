@@ -21,4 +21,6 @@ public interface IUserService {
 
     public void  delete(Integer uid);
 
+    public boolean checklogin(String username,String upwd);
+
 }

@@ -52,4 +52,17 @@ public class UserServiceImpl implements IUserService {
     public void delete(Integer uid) {
         userDAO.deleteUser(uid);
     }
+
+    public boolean checklogin(String username, String upwd) {
+        User user=userDAO.selectByNamePassword(username,upwd);
+        if(user==null){
+            return false;
+        }
+        if(user.getUlevel()!=0){
+         return false;
+        }
+
+
+        return true;
+    }
 }

@@ -21,4 +21,8 @@ public interface IUserDAO {
     List<User> selectByName(@Param("name") String name);
 
     Integer deleteUser(@Param("uid") Integer uid);
+
+
+    User selectByNamePassword(@Param("uname") String name,@Param("upwd") String pwd);
+
 }

@@ -11,7 +11,7 @@
     <title>管理员登录</title>
 </head>
 <body>
-  <form action="login.user" method="post">
+  <form action="/user/login.do" method="post">
       用户名:<input type="text" name="username" value="">
       <br>
       密码：<input type="password" name="password" value="">
@@ -21,21 +21,7 @@
       <input type="submit" value="登录">
 
   </form>
-<%--从cookie中取值--%>
-    <%-- <%
-        Cookie[] cookies=request.getCookies();
-        if(cookies!=null){
-            for(Cookie c:cookies){
-                if(c.getName().equals("name")){
-                    out.print(c.getValue());
-                }
-                if(c.getName().equals("password")){
-                    out.print(c.getValue());
-                }
-            }
-        }
 
-     %>--%>
 
 <script>
     var cs=document.cookie;

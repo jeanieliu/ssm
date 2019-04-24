@@ -19,6 +19,9 @@
 
     <mvc:annotation-driven/>
 
+    <!--对静态资源不进行拦截：js，css，图片等等-->
+    <mvc:default-servlet-handler/>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/"/>
         <property name="suffix" value=".jsp"/>

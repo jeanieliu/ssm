@@ -17,7 +17,8 @@
 <body>
 
 <div class="lay_top">
-
+     <%--${username}--%>
+    ${uname}
     电商平台管理系统
     <div>
 
