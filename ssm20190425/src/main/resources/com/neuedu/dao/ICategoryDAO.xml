@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--使用xml实现接口的功能
+    约束：mapper
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.dao.ICategoryDAO">
+
+    <select id="selectAll" resultMap="categroy">
+        select tc.cid cid,
+                tc.cname cname,
+                tg.gid gid,
+                tg.gnum gnum,
+                tg.gprice gprice,
+                tg.gstock gstock,
+                tg.gsell gsell,
+                tg.gdesc gdesc,
+                tg.imgsrc imgsrc,
+                tg.cid  gcid
+        from t_category tc join t_good tg
+              on tc.cid=tg.cid
+    </select>
+
+    <resultMap id="categroy" type="Category">
+        <id property="cid" column="cid"/>
+        <result property="cname" column="cname"/>
+        <collection property="goods" ofType="Goods">
+            <id property="gid" column="gid"/>
+            <result property="gname" column="gname"/>
+            <result property="gnum" column="gnum"/>
+            <result property="gprice" column="gprice"/>
+            <result property="gstock" column="gstock"/>
+            <result property="gdesc" column="gdesc"/>
+            <result property="imgsrc" column="imgsrc"/>
+            <result property="cid" column="gcid"/>
+            <result property="gsell" column="gsell"/>
+
+        </collection>
+    </resultMap>
+</mapper>

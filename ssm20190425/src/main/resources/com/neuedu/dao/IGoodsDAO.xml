@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--使用xml实现接口的功能
+    约束：mapper
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.dao.IGoodsDAO">
+
+    <sql id="goodsall">
+        gid,gnum,gname,gprice,gstock,gsell,gdesc,cid,imgsrc
+    </sql>
+
+
+
+    <select id="selectByNameAndDesc" resultType="Goods">
+        SELECT <include refid="goodsall"/>
+        from t_good
+        <trim prefix="where" prefixOverrides="and|or">
+            <if  test="gname!=null">
+                or gname like "%${gname}%"
+            </if>
+
+            <if  test="gdesc!=null">
+                or gdesc like concat("%",#{gdesc},"%")
+            </if>
+        </trim>
+    </select>
+
+
+
+    <update id="updateGoods">
+        UPDATE  t_good
+        <trim prefix="set" suffixOverrides=",">
+            <if  test="goods.gname!=null">
+                gname=#{goods.gname},
+            </if>
+            <if test="goods.gdesc!=null">
+                gdesc=#{goods.gdesc}  ,
+            </if>
+            <if test="goods.gprice!=null">
+                gprice=#{goods.gprice},
+            </if>
+        </trim>
+        where gid=#{goods.gid}
+    </update>
+
+
+
+
+    <select id="selectByCidList" resultType="Goods">
+        SELECT  <include refid="goodsall"/>
+        from t_good
+        where cid IN
+        <foreach collection="list" item="i" open="(" close=")" separator=",">
+            #{i}
+        </foreach>
+
+    </select>
+
+    <select id="selectByOffsetAndNum" resultType="Goods">
+        select <include refid="goodsall"/>
+        FROM  t_good
+        limit #{offset},#{num}
+    </select>
+
+    <insert id="insert">
+        insert into t_good(gnum,gname,gprice,gstock,gsell,gdesc,cid,imgsrc)
+        values(#{goods.gnum},#{goods.gname},#{goods.gprice},#{goods.gstock},#{goods.gsell},#{goods.gdesc},#{goods.cid},#{goods.imgsrc})
+    </insert>
+</mapper>
